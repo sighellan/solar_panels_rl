@@ -13,7 +13,7 @@ Changes from orignal repository:
 ### Example
 
 To run the example, navigate to the directory `experiments` and run `python run_all_experiments.py`
-![example BO results](experiments/results/solar_usa_avg_p-10_true/cumulative_reward.pdf)
+![example BO results](cumulative_reward_bo.jpg)
 
 ## Original:
 
