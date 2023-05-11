@@ -13,7 +13,7 @@ import argparse
 
 # Other imports.
 from simple_rl.run_experiments import run_agents_on_mdp
-from simple_rl.agents import RandomAgent, FixedPolicyAgent, LinearQAgent, LinUCBAgent, QLearningAgent
+from simple_rl.agents import RandomAgent, FixedPolicyAgent, LinearQAgent, LinUCBAgent, QLearningAgent#, LinearSarsaAgent
 from solarOOMDP.SolarOOMDPClass import SolarOOMDP
 from SolarTrackerClass import SolarTracker
 from solarOOMDP.PanelClass import Panel
@@ -54,7 +54,7 @@ def _make_mdp(loc, percept_type, panel_step, dual_axis=False, time_per_step=15.0
             "image":(True, True),
         }[percept_type]
     except KeyError:
-        print "Error: percept type unknown ('" + str(percept_type) + "''). Choose one of: ['angles', 'image']."
+        print("Error: percept type unknown ('" + str(percept_type) + "''). Choose one of: ['angles', 'image'].")
         quit()
 
     # Location.
@@ -103,7 +103,7 @@ def _make_mdp(loc, percept_type, panel_step, dual_axis=False, time_per_step=15.0
         localtz = timezone('America/New_York')
         lat_list, lon_list = [], []
 
-        for i in xrange(instances):
+        for i in range(instances):
             next_lat, next_lon = (random.uniform(30,50), random.uniform(80,120))
             lat_list.append(next_lat)
             lon_list.append(next_lon)
