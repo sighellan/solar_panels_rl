@@ -19,6 +19,8 @@ from SolarTrackerClass import SolarTracker
 from solarOOMDP.PanelClass import Panel
 import tracking_baselines as tb
 
+from BOAgent import BOAgent
+
 def _make_mdp(loc, percept_type, panel_step, dual_axis=False, time_per_step=15.0, reflective_index=0.35, energy_breakdown_experiment=False, instances=1):
     '''
     Args:
@@ -159,9 +161,11 @@ def _setup_agents(solar_mdp):
     ql_agent = QLearningAgent(actions, alpha=alpha, epsilon=epsilon, gamma=gamma)
     random_agent = RandomAgent(actions)
     
+    bo_agent = BOAgent(solar_mdp.get_bandit_actions())
+    
     # Regular experiments.
     # agents = [lin_ucb_agent, sarsa_agent, sarsa_agent_g0, grena_tracker_agent, static_agent]
-    agents = [grena_tracker_agent, static_agent]
+    agents = [bo_agent, lin_ucb_agent, grena_tracker_agent, static_agent]
 
     return agents
 
@@ -213,7 +217,7 @@ def main():
         # episodes = 50, dual: 100
 
     # Setup experiment parameters, agents, mdp.
-    num_days = 200
+    num_days = 5 #200
     per_hour = True
     loc, percept_type, dual_axis = parse_args()
     time_per_step = 10.0 if not dual_axis else 20.0 # in minutes.
@@ -224,7 +228,7 @@ def main():
     # Set experiment # episodes and # instances.
     episodes = 1 if not dual_axis else 100
     episodes = 1 if num_days == 365 else episodes
-    instances = 50
+    instances = 2 #50
 
     # If per hour is true, plots every hour long reward chunk, otherwise every day.
     rew_step_count = (steps / num_days ) / 24 if per_hour else (steps / num_days)
