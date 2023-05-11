@@ -1,5 +1,7 @@
 # solar_panels_rl
 
+This is a fork from (https://github.com/david-abel/solar_panels_rl).
+
 ## Changes:
 
 Example implementation using Bayesian optimisation in BoTorch for solar panel control.
