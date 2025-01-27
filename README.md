@@ -1,13 +1,15 @@
-# solar_panels_rl
+# Bayesian optimisation for solar panel control
 
-This is a fork from (https://github.com/david-abel/solar_panels_rl).
+This is an extension to code by David Abel et al. available from https://github.com/david-abel/solar_panels_rl.
+In the original repo, reinforcement learning is applied to adjust the angle of a solar panel. Here we provide
+a basic implementation of Bayesian optimisation for the same problem.
 
 ## Changes:
 
-Example implementation using Bayesian optimisation in BoTorch for solar panel control.
+Example implementation using Bayesian optimisation in [BoTorch](https://botorch.org) for solar panel control.
 
 Changes from orignal repository:
-* Inclusion of requirements file to ease reproducibility (we found that not all versions of simple_rl were compatible).
+* Inclusion of requirements file to ease reproducibility (we found that not all versions of simple_rl were compatible, and recommend v0.784).
 * Made compatible with Python 3.6 (required for BoTorch).
 * Basic implementation of agent using Bayesian optimisation. Note that the implementation is slow and uses random subsampling.
 * Example results for BO (see below). Because the BO implementation is slow we changed the default experiment settings to make the experiment shorter.
